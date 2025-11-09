@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -242,7 +243,7 @@ function StarRating({ value }) {
 
 function ProductCard({ id, title, description, price, discountedPrice, discountPercentage, rating, image }) {
   return (
-    <div className="gap-6 shadow-[2px_2px_4px_rgba(0,0,0,0.3)]">
+    <Link href={`/products/${id}`} className="gap-6 shadow-[2px_2px_4px_rgba(0,0,0,0.3)] block hover:opacity-90 transition-opacity">
       {/* Картинка продукта */}
       <div>  
         <img src={image} alt={title} className="h-full w-full object-contain aspect-retromax" />
@@ -281,14 +282,13 @@ function ProductCard({ id, title, description, price, discountedPrice, discountP
         </div>
 
         {/* Кнопка "В корзину" */}
-        <a 
-          href={`/products/${id}`} 
+        <div 
           className="mx-3 mt-2 mb-3 flex h-8 cursor-pointer items-center justify-center rounded-[8px] border border-green text-green hover:bg-orange1 hover:border-orange1 hover:text-white transition-colors"
         >
           В корзину
-        </a>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
